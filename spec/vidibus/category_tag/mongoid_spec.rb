@@ -29,6 +29,11 @@ describe Vidibus::CategoryTag::Mongoid do
       subject.tags_hash.should eq({'1' => ['us', 'br']})
     end
 
+    it 'should not save empty tags' do
+      subject.tags = {'1' => ''}
+      subject.tags_hash.should eq({})
+    end
+
     it 'should add multiple keys as category' do
       subject.tags = {'1' => 'rugby', '2' => 'us, br'}
       subject.tags_hash.should eq({'1' => ['rugby'], '2' => ['us', 'br']})

@@ -27,8 +27,8 @@ module Vidibus
 
           tags_hash = {}
           categories.each do |category, tags|
-            tags = tags.split(self.class.tags_separator)
-            tags_hash[category.to_s] = tags.map(&:strip).reject(&:blank?)
+            tags = tags.split(self.class.tags_separator).map(&:strip).reject(&:blank?)
+            tags_hash[category.to_s] = tags unless tags.empty?
           end
           self.tags_hash = tags_hash
         end
