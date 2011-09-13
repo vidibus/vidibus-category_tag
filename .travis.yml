@@ -1,1 +1,5 @@
-script: "bundle exec rspec spec --format progress"
+rvm:
+  - 1.9.2
+  - 1.8.7
+  - ree
+script: 'bundle exec rspec spec --format progress'
