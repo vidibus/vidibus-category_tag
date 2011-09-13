@@ -1,7 +1,6 @@
 class TagCategory
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Acts::Tree
   include Vidibus::Uuid::Mongoid
 
   field :label
@@ -14,10 +13,11 @@ class TagCategory
 
   before_validation :set_callname
 
-  acts_as_tree
+  scope :sorted, order_by([:position, :asc])
 
-  def set_callname
-    self.callname = label.parameterize if callname.blank?
+  def self.context(context_hash)
+    return all if context_hash.blank?
+    all_in(:context => context_list(context_hash))
   end
 
   def self.context_list(context_hash)
@@ -25,8 +25,7 @@ class TagCategory
     context_hash.map { |key,value| "#{key}:#{value}" }
   end
 
-  def self.context(context_hash)
-    return all if context_hash.blank?
-    all_in(:context => context_list(context_hash))
+  def set_callname
+    self.callname = label.parameterize if callname.blank?
   end
 end

@@ -3,7 +3,6 @@ $:.unshift File.expand_path('../../app', __FILE__)
 require 'rspec'
 require 'factory_girl'
 require 'vidibus-uuid'
-require 'mongoid_acts_as_tree'
 
 require 'vidibus-category_tag'
 require 'models/tag_category'
