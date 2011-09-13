@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'activesupport', '~> 3.0'
   s.add_dependency 'mongoid', '~> 2.0'
+  s.add_dependency 'mongoid_acts_as_tree'
   s.add_dependency 'vidibus-uuid'
 
   s.add_development_dependency 'rake'

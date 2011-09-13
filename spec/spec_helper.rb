@@ -1,12 +1,13 @@
-$:.push File.expand_path('../../app', __FILE__)
+$:.unshift File.expand_path('../../app', __FILE__)
 
 require 'rspec'
 require 'factory_girl'
 require 'vidibus-uuid'
+require 'mongoid_acts_as_tree'
 
 require 'vidibus-category_tag'
-
-require File.dirname(__FILE__) + '/../spec/factories.rb'
+require 'models/tag_category'
+require 'factories'
 
 Mongoid.configure do |config|
   name = 'vidibus-category_tag_test'
