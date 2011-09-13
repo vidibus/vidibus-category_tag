@@ -1,11 +1,21 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+$:.push File.expand_path('../../app', __FILE__)
 
-require "rubygems"
-require "rspec"
-require "rr"
-require "vidibus-tags_with_context"
+require 'rspec'
+require 'factory_girl'
+require 'vidibus-uuid'
+
+require 'vidibus-category_tag'
+
+require File.dirname(__FILE__) + '/../spec/factories.rb'
+
+Mongoid.configure do |config|
+  name = 'vidibus-category_tag_test'
+  host = 'localhost'
+  config.master = Mongo::Connection.new.db(name)
+end
 
 RSpec.configure do |config|
-  config.mock_with :rr
+  config.before :each do
+    Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+  end
 end
