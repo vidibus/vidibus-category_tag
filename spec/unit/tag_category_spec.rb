@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 describe TagCategory do
-  it 'should be valid' do
-    Factory(:tag_category).should be_valid
+  describe 'validation' do
+    it 'should pass with valid attributes' do
+      Factory(:tag_category).should be_valid
+    end
   end
 
   describe '#set_callname' do
