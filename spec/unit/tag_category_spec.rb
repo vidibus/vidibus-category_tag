@@ -7,8 +7,8 @@ describe TagCategory do
     end
   end
 
-  describe '#set_callname' do
-    it 'sould set a callname if not provided' do
+  describe '#callname' do
+    it 'sould be set from label unless provided' do
       category = Factory(:tag_category, :label => 'Rating', :callname => nil)
       category.callname.should eq('rating')
     end

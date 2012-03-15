@@ -9,21 +9,25 @@ class TagCategory
   field :tags, :type => Array, :default => []
   field :position, :type => Integer, :default => 0
 
-  validates :label, :callname, :presence => true
-
   before_validation :set_callname
+
+  validates :label, :callname, :presence => true
 
   scope :sorted, order_by([:position, :asc])
 
-  def self.context(context_hash)
-    return all if context_hash.blank?
-    all_in(:context => context_list(context_hash))
+  class << self
+    def context(context_hash)
+      return all if context_hash.blank?
+      all_in(:context => context_list(context_hash))
+    end
+
+    def context_list(context_hash)
+      return [] unless context_hash
+      context_hash.map { |key,value| "#{key}:#{value}" }
+    end
   end
 
-  def self.context_list(context_hash)
-    return [] unless context_hash
-    context_hash.map { |key,value| "#{key}:#{value}" }
-  end
+  private
 
   def set_callname
     self.callname = label.parameterize if callname.blank?
