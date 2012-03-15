@@ -46,4 +46,10 @@ describe TagCategory do
       TagCategory.new.tags.should eq([])
     end
   end
+
+  describe '#context' do
+    it 'should be an empty array by default' do
+      TagCategory.new.context.should eq([])
+    end
+  end
 end

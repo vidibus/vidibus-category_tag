@@ -5,7 +5,7 @@ class TagCategory
 
   field :label
   field :callname
-  field :context, :type => Array
+  field :context, :type => Array, :default => []
   field :tags, :type => Array, :default => []
   field :position, :type => Integer, :default => 0
 
