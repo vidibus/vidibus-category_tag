@@ -8,9 +8,16 @@ describe TagCategory do
   end
 
   describe '#callname' do
-    it 'sould be set from label unless provided' do
-      category = Factory(:tag_category, :label => 'Rating', :callname => nil)
+    it 'sould be set from label before validation, unless provided' do
+      category = Factory.build(:tag_category, :label => 'Rating', :callname => nil)
+      category.valid?
       category.callname.should eq('rating')
+    end
+
+    it 'sould not be set from label unless a label is available' do
+      category = Factory.build(:tag_category, :label => nil, :callname => nil)
+      category.valid?
+      category.callname.should be_nil
     end
   end
 

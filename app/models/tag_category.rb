@@ -9,7 +9,7 @@ class TagCategory
   field :tags, :type => Array, :default => []
   field :position, :type => Integer, :default => 0
 
-  before_validation :set_callname
+  before_validation :set_callname, :if => :label
 
   validates :label, :callname, :presence => true
 
@@ -30,6 +30,6 @@ class TagCategory
   private
 
   def set_callname
-    self.callname = label.parameterize if callname.blank?
+    self.callname ||= label.parameterize
   end
 end
