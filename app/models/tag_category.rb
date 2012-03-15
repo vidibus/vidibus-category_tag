@@ -6,7 +6,7 @@ class TagCategory
   field :label
   field :callname
   field :context, :type => Array
-  field :tags, :type => Array
+  field :tags, :type => Array, :default => []
   field :position, :type => Integer, :default => 0
 
   validates :label, :callname, :presence => true

@@ -40,4 +40,10 @@ describe TagCategory do
       TagCategory.context({}).count.should eq(3)
     end
   end
+
+  describe '#tags' do
+    it 'should be an empty array by default' do
+      TagCategory.new.tags.should eq([])
+    end
+  end
 end
