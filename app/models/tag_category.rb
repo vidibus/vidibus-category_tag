@@ -10,6 +10,7 @@ class TagCategory
   field :position, :type => Integer, :default => 0
 
   before_validation :set_callname, :if => :label
+  before_validation :cleanup_tags, :if => :tags
 
   validates :label, :callname, :presence => true
 
@@ -31,5 +32,9 @@ class TagCategory
 
   def set_callname
     self.callname ||= label.parameterize
+  end
+
+  def cleanup_tags
+    self.tags.uniq!
   end
 end

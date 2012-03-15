@@ -54,6 +54,12 @@ describe TagCategory do
     it 'should be an empty array by default' do
       TagCategory.new.tags.should eq([])
     end
+
+    it 'should be made unique before validation' do
+      category = Factory.build(:tag_category, :tags => %w[tag1 tag2 tag1])
+      category.valid?
+      category.tags.should eq(%w[tag1 tag2])
+    end
   end
 
   describe '#context' do
