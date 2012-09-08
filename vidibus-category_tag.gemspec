@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# encoding: utf-8
 $:.push File.expand_path('../lib', __FILE__)
 
 require 'vidibus/category_tag/version'
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'factory_girl'
-  s.add_development_dependency 'rcov'
+  s.add_development_dependency 'simplecov'
   s.add_development_dependency 'rdoc'
 
   s.files = Dir.glob('{lib,app,config}/**/*') + %w(LICENSE README.md Rakefile)
