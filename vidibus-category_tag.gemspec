@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.name        = 'vidibus-category_tag'
   s.version     = Vidibus::CategoryTag::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ['Martin Jagusch']
-  s.email       = ['async@mj.io']
+  s.authors     = ['Martin Jagusch, Andre Pankratz']
+  s.email       = ['async@mj.io', 'andre@vidibus.com']
   s.homepage    = 'https://github.com/vidibus/vidibus-category_tag'
   s.summary     = 'Tags organized in categories for Mongoid documents.'
   s.description = s.summary
