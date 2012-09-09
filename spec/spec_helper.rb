@@ -15,6 +15,7 @@ Mongoid.configure do |config|
 end
 
 RSpec.configure do |config|
+  config.mock_with :rr
   config.before :each do
     Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
   end

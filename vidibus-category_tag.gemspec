@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'rdoc'
+  s.add_development_dependency 'rr'
 
   s.files = Dir.glob('{lib,app,config}/**/*') + %w(LICENSE README.md Rakefile)
   s.require_path = 'lib'

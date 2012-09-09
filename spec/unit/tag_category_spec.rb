@@ -67,4 +67,56 @@ describe TagCategory do
       TagCategory.new.context.should eq([])
     end
   end
+
+  describe '.sort!' do
+    before do
+      @first = Factory(:tag_category, :context => ['realm:100', 'model:movie'])
+      @second = Factory(:tag_category, :context => ['realm:100', 'model:movie'])
+      @third = Factory(:tag_category, :context => ['realm:101', 'model:movie'])
+      @fourth = Factory(:tag_category, :context => ['realm:101', 'model:movie'])
+    end
+
+    it 'should put items in order' do
+      order = [@third.uuid, @second.uuid, @first.uuid, @fourth.uuid]
+      TagCategory.sort!(order)
+      TagCategory.sorted.map {|t| t.uuid}.should eq(order)
+    end
+
+    it 'should remove items not in list' do
+      order = [@third.uuid, @first.uuid, @fourth.uuid]
+      TagCategory.sort!(order)
+      TagCategory.sorted.map {|t| t.uuid}.should eq(order)
+    end
+
+    it 'should accept order with prefix' do
+      order = [@third.uuid, @second.uuid, @first.uuid, @fourth.uuid]
+      TagCategory.sort!(order.map {|o| "prefix-#{o}"})
+      TagCategory.sorted.map {|t| t.uuid}.should eq(order)
+    end
+
+    context 'in context' do
+      let(:context) do
+        {:realm => 100, :model => 'movie'}
+      end
+
+      it 'should put items in order' do
+        order = [@second.uuid, @first.uuid]
+        TagCategory.in_context(context).sort!(order)
+        TagCategory.in_context(context).sorted.map {|t| t.uuid}.should eq(order)
+      end
+
+      it 'should remove items not in list' do
+        order = [@second.uuid]
+        TagCategory.in_context(context).sort!(order)
+        TagCategory.in_context(context).sorted.map {|t| t.uuid}.should eq(order)
+      end
+
+      it 'should not touch items not in context' do
+        order = [@third.uuid, @second.uuid]
+        TagCategory.in_context(context).sort!(order)
+        TagCategory.in_context(context).sorted.map {|t| t.uuid}.should eq([@second.uuid])
+        TagCategory.in_context(:realm => 101, :model => 'movie').count.should eq(2)
+      end
+    end
+  end
 end
