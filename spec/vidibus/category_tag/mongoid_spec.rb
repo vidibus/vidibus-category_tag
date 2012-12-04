@@ -51,6 +51,13 @@ describe Vidibus::CategoryTag::Mongoid do
       dont_allow(category).save
       subject.update_attributes(:tags => {uuid2 => 'football'})
     end
+
+    it 'should only persist a tag category if tags did change' do
+      category2
+      subject.update_attributes(:tags_hash => {uuid => ['rugby'], uuid2 => ['1']})
+      dont_allow(category).save
+      subject.update_attributes(:tags_hash => {uuid => ['rugby'], uuid2 => ['2']})
+    end
   end
 
   describe '#tags=' do
