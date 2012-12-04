@@ -12,34 +12,43 @@ end
 describe Vidibus::CategoryTag::Mongoid do
   let(:subject) { Movie.new }
   let(:uuid) { 'a068ff70a523012d26d158b035f038ab' }
+  let(:uuid2) { '7d4ef7d0974a012d10ad58b035f038ab' }
+  let(:category) do
+    obj = Factory(:tag_category, :uuid => uuid)
+    stub(subject).tag_category(uuid) { obj }
+    obj
+  end
+
+  let(:category2) do
+    obj = Factory(:tag_category, :uuid => uuid2)
+    stub(subject).tag_category(uuid2) { obj }
+    obj
+  end
 
   describe 'saving' do
     before do
-      @category = Factory(:tag_category, :uuid => uuid)
-      stub(subject).tag_category(uuid) { @category }
+      category
     end
 
     it 'should set tags on tag category' do
-      mock(@category).tags=(['rugby'])
+      mock(category).tags=(['rugby'])
       subject.update_attributes(:tags => {uuid => 'rugby'})
     end
 
     it 'should persist tag category' do
-      mock(@category).save
+      mock(category).save
       subject.update_attributes(:tags => {uuid => 'rugby'})
     end
 
     it 'should not persist tag category if tags did not have been changed' do
       subject.update_attributes(:tags => {uuid => 'rugby'})
-      dont_allow(@category).save
+      dont_allow(category).save
       subject.update_attributes(:tags => {uuid => 'rugby'})
     end
 
     it 'should not store tags of a different category' do
-      uuid2 = '7d4ef7d0974a012d10ad58b035f038ab'
-      category = Factory(:tag_category, :uuid => uuid2)
-      stub(subject).tag_category(uuid2) { category }
-      dont_allow(@category).save
+      category2
+      dont_allow(category).save
       subject.update_attributes(:tags => {uuid2 => 'football'})
     end
   end
