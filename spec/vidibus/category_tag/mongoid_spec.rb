@@ -66,6 +66,11 @@ describe Vidibus::CategoryTag::Mongoid do
       subject.tags_hash.should eq({})
     end
 
+    it 'should accept tags as array' do
+      subject.tags = {'1' => %w[us br]}
+      subject.tags_hash.should eq({'1' => ['us', 'br']})
+    end
+
     it 'should add multiple keys as category' do
       subject.tags = {'1' => 'rugby', '2' => 'us, br'}
       subject.tags_hash.should eq({'1' => ['rugby'], '2' => ['us', 'br']})

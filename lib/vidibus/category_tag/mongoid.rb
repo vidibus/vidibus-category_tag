@@ -29,7 +29,8 @@ module Vidibus
         @changed_category_tags ||= {}
         categories.each do |category, tags|
           category = category.to_s
-          tags = tags.split(self.class.tags_separator).map(&:strip).reject(&:blank?)
+          tags = tags.split(self.class.tags_separator) unless tags.is_a?(Array)
+          tags = tags.map(&:strip).reject(&:blank?)
           hash[category] = tags if tags.present?
           if tags_hash[category] != tags
             @changed_category_tags[category] = tags
