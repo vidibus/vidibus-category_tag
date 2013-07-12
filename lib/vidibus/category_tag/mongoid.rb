@@ -13,6 +13,11 @@ module Vidibus
           @tags_separator = separator if separator
           @tags_separator || ','
         end
+
+        def clean_tags_array(tags)
+          tags = tags.split(tags_separator) unless tags.is_a?(Array)
+          tags.map(&:strip).reject(&:blank?)
+        end
       end
 
       def tags
@@ -27,8 +32,7 @@ module Vidibus
         hash = {}
         categories.each do |category, tags|
           category = category.to_s
-          tags = tags.split(self.class.tags_separator) unless tags.is_a?(Array)
-          tags = tags.map(&:strip).reject(&:blank?)
+          tags = self.class.clean_tags_array(tags)
           hash[category] = tags if tags.present?
         end
         self.tags_hash = hash

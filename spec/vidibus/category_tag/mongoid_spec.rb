@@ -137,4 +137,36 @@ describe Vidibus::CategoryTag::Mongoid do
       pending 'Second iteration'
     end
   end
+
+  describe '.clean_tags_array' do
+    it 'should return an array' do
+      input = ['some', 'thing']
+      Movie.clean_tags_array(input).should eq(input)
+    end
+
+    it 'should return a stripped array' do
+      Movie.clean_tags_array(['some ', ' thing']).
+        should eq(['some', 'thing'])
+    end
+
+    it 'should return an array without blanks' do
+      Movie.clean_tags_array(['some', ' ', 'thing']).
+        should eq(['some', 'thing'])
+    end
+
+    it 'should return an array from string input separated by comma' do
+      Movie.clean_tags_array('some,thing').
+        should eq(['some', 'thing'])
+    end
+
+    it 'should return an array from string input separated by semicolon' do
+      Western.clean_tags_array('some;thing').
+        should eq(['some', 'thing'])
+    end
+
+    it 'should strip string input' do
+      Movie.clean_tags_array(' some, thing ').
+        should eq(['some', 'thing'])
+    end
+  end
 end
