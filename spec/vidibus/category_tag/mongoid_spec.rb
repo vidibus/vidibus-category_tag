@@ -94,11 +94,13 @@ describe Vidibus::CategoryTag::Mongoid do
 
     it 'should not add an array as tag' do
       tags = ['1', 'rugby']
-      expect { subject.tags = tags }.to raise_error(Vidibus::CategoryTag::Error)
+      expect { subject.tags = tags }.
+        to raise_error(Vidibus::CategoryTag::Error)
     end
 
     it 'should not add a string as tag' do
-      expect { subject.tags = '1' }.to raise_error(Vidibus::CategoryTag::Error)
+      expect { subject.tags = '1' }.
+        to raise_error(Vidibus::CategoryTag::Error)
     end
 
     it 'should remove a trailing separator' do
