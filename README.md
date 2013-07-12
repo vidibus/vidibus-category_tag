@@ -11,7 +11,7 @@ Add `gem "vidibus-category_tag"` to your Gemfile. Then call `bundle install` on 
 
 ### Housekeeping
 
-A task that removes delected tag categories from tagged items would be helpful. And we need a way to remove unused tags from categories.
+A task that removes deleted tag categories from tagged items would be helpful. And we need a way to remove unused tags from categories.
 
 ### MapReduce
 
