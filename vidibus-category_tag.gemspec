@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/vidibus/vidibus-category_tag'
   s.summary     = 'Tags organized in categories for Mongoid documents.'
   s.description = s.summary
+  s.license     = 'MIT'
 
   s.add_dependency 'activesupport', '~> 3.0'
   s.add_dependency 'mongoid', '~> 2.0'
