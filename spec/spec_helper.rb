@@ -9,14 +9,13 @@ require 'models/tag_category'
 require 'factories'
 
 Mongoid.configure do |config|
-  name = 'vidibus-category_tag_test'
-  host = 'localhost'
-  config.master = Mongo::Connection.new.db(name)
+  config.connect_to('vidibus-category_tag_test')
 end
 
 RSpec.configure do |config|
   config.mock_with :rr
-  config.before :each do
-    Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+  config.before(:each) do
+    Mongoid::Sessions.default.collections.
+      select {|c| c.name !~ /system/}.each(&:drop)
   end
 end

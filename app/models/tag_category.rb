@@ -17,11 +17,8 @@ class TagCategory
 
   scope :sorted, order_by([:position, :asc])
 
-  index [:position, 1]
-  index [
-    [:context, 1],
-    [:callname, 1]
-  ]
+  index({position: 1})
+  index({context: 1, callname: 1})
 
   class << self
     def context(context_hash)
