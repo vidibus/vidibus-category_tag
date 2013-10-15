@@ -20,4 +20,4 @@ Use MapReduce to determine which tags have been used on a category. Also track t
 
 ## Copyright
 
-&copy; 2011-212 Andre Pankratz, Martin Jagusch. See LICENSE for details.
+&copy; 2011-213 Andre Pankratz, Martin Jagusch. See LICENSE for details.
