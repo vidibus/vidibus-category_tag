@@ -1,4 +1,4 @@
-# Vidibus::CategoryTag [![Build Status](https://travis-ci.org/vidibus/vidibus-category_tag.png)](https://travis-ci.org/vidibus/vidibus-category_tag)
+# Vidibus::CategoryTag [![Build Status](https://travis-ci.org/vidibus/vidibus-category_tag.png)](https://travis-ci.org/vidibus/vidibus-category_tag) [![Code Climate](https://codeclimate.com/github/vidibus/vidibus-category_tag.png)](https://codeclimate.com/github/vidibus/vidibus-category_tag)
 
 This gem is part of [Vidibus](http://vidibus.org), an open source toolset for building distributed applications.
 
